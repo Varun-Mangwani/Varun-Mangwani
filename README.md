@@ -47,15 +47,39 @@
 
 ---
 
-## 📊 GitHub Analytics
+## 🧩 Featured Work & Experiments
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Varun-Mangwani&show_icons=true&theme=tokyonight&hide_border=true" width="48%"/>
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Varun-Mangwani&theme=tokyonight&hide_border=true" width="48%"/>
+  <img src="https://media.giphy.com/media/13HgwGsXF0aiGY/giphy.gif" width="300"/>
 </p>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Varun-Mangwani&layout=compact&theme=tokyonight&hide_border=true" width="50%"/>
+  I focus on building <b>clean, functional, and scalable</b> projects  
+  that improve my problem-solving and real-world development skills.
 </p>
+
+---
+
+### 🔨 What I Build
+- 🖥️ Software & logic-based programs  
+- 🌐 Responsive web applications  
+- 🔗 API-driven systems  
+- 🧠 Learning projects with strong fundamentals  
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=git,github,linux" />
+</p>
+
+---
+
+## 🚧 Current Journey
+<p align="center">
+  <img src="https://media.giphy.com/media/f3iwJFOVOwuy7K6FFw/giphy.gif" width="260"/>
+</p>
+
+- 🧱 Strengthening programming fundamentals  
+- ⚙️ Exploring full-stack development  
+- 🔐 Learning better system design & APIs  
+- 🚀 Building consistently, step by step
 
 ---
 
