@@ -26,11 +26,9 @@
 ---
 
 ## 📊 GitHub Stats
-![Varun's GitHub stats](https://github-readme-stats.vercel.app/api?username=Varun-Mangwani&show_icons=true)
 
-![GitHub Streak]([]([](https://github-readme-streak-stats.herokuapp.com/?user=Varun-Mangwani)))
-
----
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Varun-Mangwani&show_icons=true&theme=tokyonight)
+![Streak Stats](https://github-readme-streak-stats.herokuapp.com/?user=Varun-Mangwani&theme=tokyonight)
 
 ## 💬 Quote
 > **"Key to find peace is focus."**  
