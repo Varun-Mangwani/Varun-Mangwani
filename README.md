@@ -1,42 +1,85 @@
-<h1 align="center">Hi 👋, I'm Varun Mangwani</h1>
-<h3 align="center">Key To Find Peace Is Focus</h3>
+
+<!-- TOP BANNER -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=220&section=header&text=Varun%20Mangwani&fontSize=45&fontColor=ffffff&animation=fadeIn" />
+</p>
+
+<!-- TYPING ANIMATION -->
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=38BDF8&center=true&vCenter=true&width=700&lines=Key+To+Find+Peace+Is+Focus;Software+Developer;Web+Developer;API+Manager;Building+With+Consistency" />
+</p>
+
+---
+
+## 🌐 My Website
+<p align="center">
+  <a href="https://varun.dpdns.org" target="_blank">
+    <img src="https://img.shields.io/badge/Visit%20My%20Website-varun.dpdns.org-0ea5e9?style=for-the-badge&logo=google-chrome&logoColor=white"/>
+  </a>
+</p>
 
 ---
 
 ## 🚀 About Me
-- 💻 Coding & Software Development enthusiast  
-- 🌐 Web Developer  
-- 🔗 API Manager  
-- 🧠 Focused on growth, discipline, and clean logic  
+<p align="center">
+  <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="320"/>
+</p>
+
+- 💻 Coding & Software Development  
+- 🌐 Web Development  
+- 🔗 API Management  
+- 🧠 Focused mindset & disciplined growth  
+- 🔥 Turning logic into impact  
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### 💻 Languages
-![C](https://img.shields.io/badge/C-blue?style=for-the-badge)
-![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge)
-![JavaScript](https://img.shields.io/badge/JavaScript-yellow?style=for-the-badge)
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=c,cpp,js" />
+</p>
 
-### 🌐 Web Development
-![HTML](https://img.shields.io/badge/HTML5-orange?style=for-the-badge)
-![CSS](https://img.shields.io/badge/CSS3-blue?style=for-the-badge)
-![React](https://img.shields.io/badge/React-black?style=for-the-badge)
-
----
-
-## 📊 GitHub Stats
-
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Varun-Mangwani&show_icons=true&theme=tokyonight)
-![Streak Stats](https://github-readme-streak-stats.herokuapp.com/?user=Varun-Mangwani&theme=tokyonight)
-
-## 💬 Quote
-> **"Key to find peace is focus."**  
-> — Varun Mangwani
+### 🌐 Web Technologies
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=html,css,react" />
+</p>
 
 ---
 
-### ⚡ Mindset
-Focused. Disciplined. Consistent.
+## 📊 GitHub Analytics
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=Varun-Mangwani&show_icons=true&theme=tokyonight&hide_border=true" width="48%"/>
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Varun-Mangwani&theme=tokyonight&hide_border=true" width="48%"/>
+</p>
 
-🚀 *Building today for a stronger tomorrow.*
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Varun-Mangwani&layout=compact&theme=tokyonight&hide_border=true" width="50%"/>
+</p>
+
+---
+
+## 💬 Quote I Live By
+<p align="center">
+  <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight" />
+</p>
+
+> **“Key to find peace is focus.”** — *Varun Mangwani*
+
+---
+
+## ⚡ Current Focus
+<p align="center">
+  <img src="https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif" width="260"/>
+</p>
+
+- 🔁 Building daily  
+- 📚 Learning deeply  
+- 🧱 Strengthening fundamentals  
+
+---
+
+<!-- FOOTER -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:2c5364,50:203a43,100:0f2027&height=120&section=footer"/>
+</p>
