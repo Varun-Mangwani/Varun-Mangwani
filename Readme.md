@@ -26,9 +26,9 @@
 ---
 
 ## 📊 GitHub Stats
-![Varun's GitHub stats](https://github-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&show_icons=true)
+![Varun's GitHub stats](https://github-readme-stats.vercel.app/api?username=Varun-Mangwani&show_icons=true)
 
-![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=YOUR_GITHUB_USERNAME)
+![GitHub Streak]([]([](https://github-readme-streak-stats.herokuapp.com/?user=Varun-Mangwani)))
 
 ---
 
