@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>UDAY — Digital Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ── Reset & Root ───────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:          hsl(201,100%,13%);
+  --fg:          hsl(0,0%,100%);
+  --muted:       hsl(240,4%,66%);
+  --border:      hsl(0,0%,18%);
+  --font-display:'Instrument Serif',serif;
+  --font-body:   'Inter',sans-serif;
+}
+
+html,body{
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--fg);
+  font-family:var(--font-body);
+  overflow:hidden;
+}
+
+/* ── Liquid Glass ───────────────────────────────── */
+.glass{
+  background:rgba(255,255,255,0.01);
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+  border:none;
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.10);
+  position:relative;
+  overflow:hidden;
+}
+.glass::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  padding:1.4px;
+  background:linear-gradient(180deg,
+    rgba(255,255,255,.45) 0%,
+    rgba(255,255,255,.15) 20%,
+    rgba(255,255,255,0)   40%,
+    rgba(255,255,255,0)   60%,
+    rgba(255,255,255,.15) 80%,
+    rgba(255,255,255,.45) 100%);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  pointer-events:none;
+}
+
+/* ── Page engine ────────────────────────────────── */
+#app{ position:fixed;inset:0;width:100%;height:100%; }
+
+#bg-video{
+  position:fixed;inset:0;width:100%;height:100%;
+  object-fit:cover;z-index:0;transition:opacity .6s ease;
+}
+
+.page{
+  position:fixed;inset:0;width:100%;height:100%;
+  z-index:2;display:flex;flex-direction:column;
+  pointer-events:none;opacity:0;
+  transition:opacity .55s cubic-bezier(.4,0,.2,1),
+             transform .55s cubic-bezier(.4,0,.2,1);
+  transform:translateY(18px);overflow-y:auto;
+}
+.page.active{ opacity:1;transform:translateY(0);pointer-events:all; }
+.page.exit  { opacity:0;transform:translateY(-14px);pointer-events:none; }
+
+/* ── Animations ─────────────────────────────────── */
+@keyframes fade-rise{
+  from{opacity:0;transform:translateY(24px)}
+  to  {opacity:1;transform:translateY(0)}
+}
+.fr  {animation:fade-rise .8s ease-out 0s   both}
+.fr-1{animation:fade-rise .8s ease-out .15s both}
+.fr-2{animation:fade-rise .8s ease-out .30s both}
+.fr-3{animation:fade-rise .8s ease-out .45s both}
+.fr-4{animation:fade-rise .8s ease-out .60s both}
+.page:not(.active) .fr,
+.page:not(.active) .fr-1,
+.page:not(.active) .fr-2,
+.page:not(.active) .fr-3,
+.page:not(.active) .fr-4{animation:none;opacity:0}
+
+/* ════════════════════════════════════════════════
+   NAV
+════════════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;
+  z-index:200;
+}
+.nav-inner{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:22px 32px;max-width:80rem;margin:0 auto;
+}
+.logo{
+  font-family:var(--font-display);font-size:1.875rem;
+  letter-spacing:-.025em;color:var(--fg);
+  text-decoration:none;cursor:pointer;user-select:none;
+  z-index:210;position:relative;
+}
+.logo sup{font-size:.7rem;vertical-align:super}
+
+/* Desktop links */
+.nav-links{
+  display:flex;gap:2rem;list-style:none;align-items:center;
+}
+.nav-links a{
+  font-size:.875rem;color:var(--muted);
+  text-decoration:none;transition:color .2s;cursor:pointer;
+}
+.nav-links a.active,.nav-links a:hover{color:var(--fg)}
+
+/* Desktop CTA */
+.nav-cta{
+  border-radius:9999px;padding:10px 24px;
+  font-size:.875rem;font-family:var(--font-body);
+  color:var(--fg);background:transparent;
+  cursor:pointer;transition:transform .2s;
+}
+.nav-cta:hover{transform:scale(1.03)}
+
+/* ── Hamburger button ───────────────────────── */
+.hamburger{
+  display:none;
+  flex-direction:column;justify-content:center;align-items:center;
+  gap:5px;width:40px;height:40px;
+  background:transparent;border:none;cursor:pointer;
+  z-index:210;position:relative;padding:4px;
+}
+.hamburger span{
+  display:block;width:24px;height:1.5px;
+  background:var(--fg);border-radius:2px;
+  transition:transform .35s ease, opacity .25s ease, width .25s ease;
+  transform-origin:center;
+}
+/* open state */
+.hamburger.open span:nth-child(1){ transform:translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2){ opacity:0;width:0; }
+.hamburger.open span:nth-child(3){ transform:translateY(-6.5px) rotate(-45deg); }
+
+/* ── Mobile drawer ──────────────────────────── */
+.mobile-menu{
+  display:none;
+  position:fixed;inset:0;
+  z-index:190;
+  flex-direction:column;
+  justify-content:center;align-items:center;gap:0;
+  background:rgba(3,28,42,.97);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  opacity:0;pointer-events:none;
+  transition:opacity .35s ease;
+}
+.mobile-menu.open{opacity:1;pointer-events:all;}
+.mobile-menu ul{
+  list-style:none;text-align:center;
+  display:flex;flex-direction:column;gap:0;width:100%;
+}
+.mobile-menu ul li{
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.mobile-menu ul li:first-child{border-top:1px solid rgba(255,255,255,.06);}
+.mobile-menu ul li a{
+  display:block;padding:22px 40px;
+  font-family:var(--font-display);
+  font-size:clamp(1.75rem,7vw,2.5rem);
+  color:var(--muted);text-decoration:none;
+  letter-spacing:-.04em;line-height:1;
+  transition:color .2s,padding-left .2s;
+  cursor:pointer;
+}
+.mobile-menu ul li a:hover,
+.mobile-menu ul li a.active{color:var(--fg);padding-left:52px;}
+.mobile-menu-cta{
+  margin-top:40px;
+  border-radius:9999px;padding:16px 44px;
+  font-size:1rem;font-family:var(--font-body);
+  color:var(--fg);background:transparent;
+  cursor:pointer;transition:transform .2s;
+}
+.mobile-menu-cta:hover{transform:scale(1.03)}
+.mobile-tagline{
+  position:absolute;bottom:36px;
+  font-size:.75rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--muted);
+}
+
+@media(max-width:767px){
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .mobile-menu{display:flex}
+}
+
+/* ════════════════════════════════════════════════
+   HOME
+════════════════════════════════════════════════ */
+#home .hero{
+  position:relative;z-index:2;flex:1;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:120px 24px 80px;
+}
+#home h1{
+  font-family:var(--font-display);font-weight:normal;
+  font-size:clamp(2.75rem,9vw,6rem);
+  line-height:.95;letter-spacing:-2.46px;
+  max-width:80rem;color:var(--fg);
+}
+#home h1 em{font-style:normal;color:var(--muted)}
+#home .sub{
+  color:var(--muted);font-size:clamp(.95rem,2vw,1.125rem);
+  max-width:42rem;margin-top:2rem;line-height:1.7;
+}
+#home .badge-row{
+  display:flex;flex-wrap:wrap;gap:10px;
+  justify-content:center;margin-top:2rem;
+}
+#home .badge{
+  border-radius:9999px;padding:7px 18px;
+  font-size:.75rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);
+}
+#home .cta{
+  border-radius:9999px;padding:20px 56px;font-size:1rem;
+  font-family:var(--font-body);color:var(--fg);
+  background:transparent;cursor:pointer;
+  margin-top:2rem;transition:transform .2s;
+}
+#home .cta:hover{transform:scale(1.03)}
+
+/* ════════════════════════════════════════════════
+   ABOUT
+════════════════════════════════════════════════ */
+#about{ background:rgba(0,0,0,.58); }
+#about .about-wrap{
+  flex:1;display:flex;flex-direction:column;justify-content:center;
+  max-width:72rem;margin:0 auto;
+  padding:130px 40px 60px;gap:56px;
+}
+#about .about-top{
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;
+}
+#about .about-eyebrow{
+  font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:24px;
+}
+#about h2{
+  font-family:var(--font-display);
+  font-size:clamp(2.25rem,5.5vw,4rem);
+  font-weight:normal;line-height:1;letter-spacing:-1.5px;
+}
+#about .about-right p{
+  color:var(--muted);font-size:1.0625rem;line-height:1.8;margin-bottom:1.25rem;
+}
+#about .stat-row{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:36px 0;
+}
+#about .stat{text-align:center;padding:16px}
+#about .stat-num{
+  font-family:var(--font-display);
+  font-size:clamp(2.25rem,5vw,3.25rem);
+  line-height:1;display:block;margin-bottom:8px;
+}
+#about .stat-label{
+  font-size:.8125rem;color:var(--muted);
+  letter-spacing:.12em;text-transform:uppercase;
+}
+#about .values{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--border);
+}
+#about .value-card{
+  background:rgba(255,255,255,.015);padding:32px 28px;transition:background .25s;
+}
+#about .value-card:hover{background:rgba(255,255,255,.04)}
+#about .value-num{
+  font-family:var(--font-display);font-size:1.75rem;
+  color:var(--muted);display:block;margin-bottom:14px;
+}
+#about .value-title{font-size:1rem;margin-bottom:8px;font-weight:500}
+#about .value-desc{font-size:.875rem;color:var(--muted);line-height:1.7}
+
+@media(max-width:767px){
+  #about .about-top{grid-template-columns:1fr}
+  #about .values{grid-template-columns:1fr}
+  #about .stat-row{grid-template-columns:1fr}
+  #about .about-wrap{padding:110px 24px 60px;gap:40px}
+}
+
+/* ════════════════════════════════════════════════
+   STUDIO
+════════════════════════════════════════════════ */
+#studio{ background:rgba(0,0,0,.62); }
+#studio .studio-wrap{
+  flex:1;max-width:80rem;margin:0 auto;
+  padding:130px 40px 60px;width:100%;
+}
+#studio .studio-head{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:52px;gap:40px;flex-wrap:wrap;
+}
+#studio .studio-eyebrow{
+  font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:20px;
+}
+#studio h2{
+  font-family:var(--font-display);
+  font-size:clamp(2.25rem,5.5vw,3.75rem);
+  font-weight:normal;line-height:1;letter-spacing:-1.5px;max-width:520px;
+}
+#studio .studio-intro{
+  color:var(--muted);font-size:1rem;line-height:1.75;
+  max-width:340px;align-self:flex-end;
+}
+#studio .services{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:1px;background:var(--border);margin-bottom:56px;
+}
+#studio .service{
+  background:rgba(255,255,255,.01);padding:40px 36px;
+  display:flex;flex-direction:column;gap:14px;
+  transition:background .25s;cursor:default;
+}
+#studio .service:hover{background:rgba(255,255,255,.035)}
+#studio .service-tag{
+  font-size:.7rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--muted);
+}
+#studio .service-title{
+  font-family:var(--font-display);font-size:1.625rem;font-weight:normal;
+}
+#studio .service-desc{font-size:.9rem;color:var(--muted);line-height:1.7;max-width:380px}
+#studio .service-num{
+  font-family:var(--font-display);font-size:2.75rem;
+  color:var(--border);margin-top:auto;line-height:1;
+}
+#studio .process{border-top:1px solid var(--border);padding-top:40px}
+#studio .process-title{
+  font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:32px;
+}
+#studio .steps{display:flex;gap:0;flex-wrap:wrap}
+#studio .step{
+  flex:1;min-width:140px;padding:0 28px 0 0;
+  border-right:1px solid var(--border);margin-right:28px;
+}
+#studio .step:last-child{border:none;margin:0}
+#studio .step-n{
+  font-family:var(--font-display);font-size:1.875rem;
+  color:var(--muted);display:block;margin-bottom:10px;
+}
+#studio .step-name{font-size:.95rem;font-weight:500;margin-bottom:6px}
+#studio .step-info{font-size:.825rem;color:var(--muted);line-height:1.65}
+
+@media(max-width:767px){
+  #studio .services{grid-template-columns:1fr}
+  #studio .steps{flex-direction:column;gap:28px}
+  #studio .step{border-right:none;border-bottom:1px solid var(--border);
+    padding:0 0 28px;margin:0}
+  #studio .step:last-child{border:none}
+  #studio .studio-wrap{padding:110px 24px 60px}
+}
+
+/* ════════════════════════════════════════════════
+   REACH US
+════════════════════════════════════════════════ */
+#reach{ background:rgba(0,0,0,.65); }
+#reach .reach-wrap{
+  flex:1;display:flex;flex-direction:column;justify-content:center;
+  max-width:72rem;margin:0 auto;padding:130px 40px 60px;gap:56px;
+}
+#reach h2{
+  font-family:var(--font-display);
+  font-size:clamp(2.75rem,7.5vw,5rem);
+  font-weight:normal;line-height:.95;letter-spacing:-2px;max-width:700px;
+}
+#reach h2 em{font-style:normal;color:var(--muted)}
+#reach .reach-body{
+  display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;
+}
+#reach .reach-info p{
+  color:var(--muted);font-size:1rem;line-height:1.8;margin-bottom:2rem;
+}
+#reach .contact-items{display:flex;flex-direction:column;gap:1px;background:var(--border)}
+#reach .contact-item{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 22px;background:rgba(255,255,255,.01);transition:background .2s;
+}
+#reach .contact-item:hover{background:rgba(255,255,255,.04)}
+#reach .contact-label{
+  font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);
+}
+#reach .contact-val{font-family:var(--font-display);font-size:1.0625rem}
+#reach .form{display:flex;flex-direction:column;gap:14px}
+#reach .field{display:flex;flex-direction:column;gap:7px}
+#reach .field label{
+  font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);
+}
+#reach .field input,
+#reach .field textarea{
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  border-radius:4px;padding:13px 17px;font-size:.95rem;
+  font-family:var(--font-body);color:var(--fg);outline:none;
+  transition:border-color .2s,background .2s;resize:none;
+}
+#reach .field input:focus,
+#reach .field textarea:focus{
+  border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.07);
+}
+#reach .field input::placeholder,
+#reach .field textarea::placeholder{color:rgba(255,255,255,.25)}
+#reach .submit{
+  border-radius:9999px;padding:15px 44px;font-size:.9375rem;
+  font-family:var(--font-body);color:var(--fg);background:transparent;
+  cursor:pointer;align-self:flex-start;margin-top:6px;transition:transform .2s;
+}
+#reach .submit:hover{transform:scale(1.03)}
+
+@media(max-width:767px){
+  #reach .reach-body{grid-template-columns:1fr;gap:40px}
+  #reach .reach-wrap{padding:110px 24px 60px;gap:36px}
+}
+
+/* ── Footer & Dots ───────────────────────────── */
+.footer{
+  position:fixed;bottom:0;left:0;right:0;z-index:150;
+  padding:14px 32px;display:flex;justify-content:space-between;align-items:center;
+}
+.footer span{font-size:.75rem;color:var(--muted);letter-spacing:.08em}
+.dots{
+  position:fixed;right:24px;top:50%;transform:translateY(-50%);
+  z-index:150;display:flex;flex-direction:column;gap:10px;
+}
+.dot{
+  width:5px;height:5px;border-radius:50%;background:var(--muted);
+  cursor:pointer;transition:background .3s,transform .3s;
+}
+.dot.active{background:var(--fg);transform:scale(1.5)}
+@media(max-width:600px){.dots{display:none}}
+</style>
+</head>
+<body>
+
+<!-- Background Video -->
+<video id="bg-video" autoplay loop muted playsinline>
+  <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4" type="video/mp4"/>
+</video>
+
+<!-- ═══════ NAVIGATION ═══════ -->
+<nav>
+  <div class="nav-inner">
+    <a class="logo" onclick="navigate('home')">UDAY<sup>®</sup></a>
+
+    <!-- Desktop links -->
+    <ul class="nav-links">
+      <li><a data-page="home"   onclick="navigate('home')"   class="active">Home</a></li>
+      <li><a data-page="studio" onclick="navigate('studio')">Studio</a></li>
+      <li><a data-page="about"  onclick="navigate('about')">About</a></li>
+      <li><a data-page="reach"  onclick="navigate('reach')">Reach Us</a></li>
+    </ul>
+
+    <!-- Desktop CTA -->
+    <button class="glass nav-cta" onclick="navigate('reach')">Start a Project</button>
+
+    <!-- Hamburger -->
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════ MOBILE MENU ═══════ -->
+<div class="mobile-menu" id="mobile-menu">
+  <ul>
+    <li><a data-page="home"   onclick="mobileNav('home')"   class="active">Home</a></li>
+    <li><a data-page="studio" onclick="mobileNav('studio')">Studio</a></li>
+    <li><a data-page="about"  onclick="mobileNav('about')">About</a></li>
+    <li><a data-page="reach"  onclick="mobileNav('reach')">Reach Us</a></li>
+  </ul>
+  <button class="glass mobile-menu-cta" onclick="mobileNav('reach')">Start a Project →</button>
+  <span class="mobile-tagline">Digital Agency · Est. 2021</span>
+</div>
+
+<!-- ═══════ DOTS ═══════ -->
+<div class="dots">
+  <div class="dot active" onclick="navigate('home')"   title="Home"></div>
+  <div class="dot"        onclick="navigate('studio')" title="Studio"></div>
+  <div class="dot"        onclick="navigate('about')"  title="About"></div>
+  <div class="dot"        onclick="navigate('reach')"  title="Reach Us"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PAGES
+═══════════════════════════════════════════════ -->
+<div id="app">
+
+  <!-- ── HOME ─────────────────────────────────── -->
+  <div class="page active" id="home">
+    <div class="hero">
+      <h1 class="fr">
+        Your digital presence,<br><em>built to rank,</em><br><em>built to last.</em>
+      </h1>
+      <p class="sub fr-1">
+        UDAY is a focused digital agency specialising in website development,
+        SEO, Google My Business, and AI-powered video — crafted by a tight team
+        that puts quality above everything else.
+      </p>
+      <div class="badge-row fr-2">
+        <div class="glass badge">Web Development</div>
+        <div class="glass badge">SEO</div>
+        <div class="glass badge">Google My Business</div>
+        <div class="glass badge">AI Video</div>
+      </div>
+      <button class="glass cta fr-3" onclick="navigate('reach')">Start a Project →</button>
+    </div>
+  </div>
+
+  <!-- ── ABOUT ─────────────────────────────────── -->
+  <div class="page" id="about">
+    <div class="about-wrap">
+
+      <div class="about-top">
+        <div class="about-left">
+          <p class="about-eyebrow fr">About UDAY</p>
+          <h2 class="fr-1">Small team.<br>Serious<br>results.</h2>
+        </div>
+        <div class="about-right fr-2">
+          <p>UDAY was founded in 2021 on one conviction — that a small, highly skilled team will always outperform a bloated agency. We're five people who care deeply about every project we take on.</p>
+          <p>We specialise in website development as our core craft, and we layer in SEO, Google My Business optimisation, and AI video production to give our clients a full digital presence that actually performs.</p>
+          <p>We don't spread ourselves thin. We choose our partners carefully, work closely with them, and measure success by their growth — not our headcount.</p>
+        </div>
+      </div>
+
+      <div class="stat-row fr-3">
+        <div class="stat">
+          <span class="stat-num">2021</span>
+          <span class="stat-label">Founded</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">5</span>
+          <span class="stat-label">Team Members</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">30+</span>
+          <span class="stat-label">Projects Delivered</span>
+        </div>
+      </div>
+
+      <div class="values fr-4">
+        <div class="value-card">
+          <span class="value-num">01</span>
+          <div class="value-title">Quality over quantity</div>
+          <div class="value-desc">We cap our client load intentionally. Fewer projects means more focus, better work, and real results for everyone.</div>
+        </div>
+        <div class="value-card">
+          <span class="value-num">02</span>
+          <div class="value-title">Visibility by design</div>
+          <div class="value-desc">Every site we build is engineered to rank. Good design and strong SEO are not in conflict — they reinforce each other.</div>
+        </div>
+        <div class="value-card">
+          <span class="value-num">03</span>
+          <div class="value-title">Full-stack growth</div>
+          <div class="value-desc">Web, search, maps, video — we handle the whole digital picture so you don't have to juggle five different agencies.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── STUDIO ─────────────────────────────────── -->
+  <div class="page" id="studio">
+    <div class="studio-wrap">
+
+      <div class="studio-head">
+        <div>
+          <p class="studio-eyebrow fr">What We Do</p>
+          <h2 class="fr-1">Everything your<br>digital presence needs.</h2>
+        </div>
+        <p class="studio-intro fr-2">Four focused services. One team that executes all of them at the same high standard — no outsourcing, no shortcuts.</p>
+      </div>
+
+      <div class="services fr-3">
+        <div class="service">
+          <span class="service-tag">01 — Core Service</span>
+          <div class="service-title">Website Development</div>
+          <div class="service-desc">Custom-built websites that are fast, beautiful, and conversion-ready. From landing pages to full business platforms — built to grow with you.</div>
+          <div class="service-num">01</div>
+        </div>
+        <div class="service">
+          <span class="service-tag">02 — Discoverability</span>
+          <div class="service-title">SEO & Search Ranking</div>
+          <div class="service-desc">Technical SEO, on-page optimisation, content strategy, and link building — engineered to move you up the rankings and keep you there.</div>
+          <div class="service-num">02</div>
+        </div>
+        <div class="service">
+          <span class="service-tag">03 — Local Presence</span>
+          <div class="service-title">Google My Business</div>
+          <div class="service-desc">Full GMB setup, optimisation, and ongoing management. Get found by customers near you and dominate local search results.</div>
+          <div class="service-num">03</div>
+        </div>
+        <div class="service">
+          <span class="service-tag">04 — Content & Media</span>
+          <div class="service-title">AI Video Production</div>
+          <div class="service-desc">Compelling video content powered by AI — for ads, reels, product demos, and brand storytelling. Fast turnaround, premium results.</div>
+          <div class="service-num">04</div>
+        </div>
+      </div>
+
+      <div class="process fr-4">
+        <p class="process-title">How we work</p>
+        <div class="steps">
+          <div class="step">
+            <span class="step-n">01</span>
+            <div class="step-name">Discovery</div>
+            <div class="step-info">We learn your business, goals, and audience before touching a single pixel.</div>
+          </div>
+          <div class="step">
+            <span class="step-n">02</span>
+            <div class="step-name">Strategy</div>
+            <div class="step-info">A clear plan across web, search, and content — aligned to your growth targets.</div>
+          </div>
+          <div class="step">
+            <span class="step-n">03</span>
+            <div class="step-name">Build</div>
+            <div class="step-info">We execute with precision, keeping you in the loop at every stage.</div>
+          </div>
+          <div class="step">
+            <span class="step-n">04</span>
+            <div class="step-name">Grow</div>
+            <div class="step-info">Launch is just the start. We track, refine, and keep pushing your results forward.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── REACH US ───────────────────────────────── -->
+  <div class="page" id="reach">
+    <div class="reach-wrap">
+
+      <h2 class="fr">
+        Ready to grow<br><em>your digital</em><br><em>presence?</em>
+      </h2>
+
+      <div class="reach-body">
+
+        <div class="reach-info fr-1">
+          <p>We take on select projects each quarter. Tell us where you are and where you want to go — we'll tell you honestly if we're the right fit.</p>
+
+          <div class="contact-items">
+            <div class="contact-item">
+              <span class="contact-label">Email</span>
+              <span class="contact-val">hello@udayagency.com</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-label">Services</span>
+              <span class="contact-val">Web · SEO · GMB · AI Video</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-label">Founded</span>
+              <span class="contact-val">2021</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-label">Response time</span>
+              <span class="contact-val">Within 24 hours</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form fr-2">
+          <div class="field">
+            <label>Your name</label>
+            <input type="text" placeholder="Rahul Sharma"/>
+          </div>
+          <div class="field">
+            <label>Email address</label>
+            <input type="email" placeholder="rahul@yourbusiness.com"/>
+          </div>
+          <div class="field">
+            <label>What do you need help with?</label>
+            <textarea rows="4" placeholder="Website, SEO, GMB, AI video — or all of the above? Tell us about your business and your goals…"></textarea>
+          </div>
+          <button class="glass submit" onclick="handleSubmit(this)">Send Message →</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div><!-- /app -->
+
+<!-- ═══════ FOOTER ═══════ -->
+<div class="footer">
+  <span>© 2026 UDAY Digital Agency</span>
+  <span id="current-page-label">Home</span>
+</div>
+
+<script>
+const PAGES  = ['home','studio','about','reach'];
+const LABELS = {home:'Home',studio:'Studio',about:'About',reach:'Reach Us'};
+let current  = 'home';
+let busy     = false;
+let menuOpen = false;
+
+/* ── Page navigation ── */
+function navigate(id){
+  if(id === current || busy) return;
+  busy = true;
+  const from = document.getElementById(current);
+  const to   = document.getElementById(id);
+  from.classList.remove('active');
+  from.classList.add('exit');
+  document.getElementById('bg-video').style.opacity = id === 'home' ? '1' : '0.4';
+  setTimeout(()=>{
+    from.classList.remove('exit');
+    to.querySelectorAll('.fr,.fr-1,.fr-2,.fr-3,.fr-4').forEach(el=>{
+      el.style.animation='none';
+      void el.offsetHeight;
+      el.style.animation='';
+    });
+    to.classList.add('active');
+    current = id;
+    busy    = false;
+    updateNav(id);
+  }, 320);
+}
+
+function updateNav(id){
+  document.querySelectorAll('[data-page]').forEach(a=>{
+    a.classList.toggle('active', a.dataset.page === id);
+  });
+  document.querySelectorAll('.dot').forEach((d,i)=>{
+    d.classList.toggle('active', PAGES[i] === id);
+  });
+  document.getElementById('current-page-label').textContent = LABELS[id];
+}
+
+/* ── Mobile menu ── */
+function toggleMenu(){
+  menuOpen = !menuOpen;
+  document.getElementById('hamburger').classList.toggle('open', menuOpen);
+  document.getElementById('mobile-menu').classList.toggle('open', menuOpen);
+  // prevent body scroll when menu open
+  document.body.style.overflow = menuOpen ? 'hidden' : '';
+}
+
+function mobileNav(id){
+  toggleMenu();
+  setTimeout(()=> navigate(id), 180);
+}
+
+/* ── Form ── */
+function handleSubmit(btn){
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+  setTimeout(()=>{
+    btn.textContent = 'Message sent ✓';
+    btn.style.color = 'rgba(255,255,255,.5)';
+  }, 1400);
+}
+
+/* ── Keyboard navigation ── */
+document.addEventListener('keydown', e=>{
+  if(menuOpen && e.key==='Escape'){ toggleMenu(); return; }
+  const idx = PAGES.indexOf(current);
+  if(e.key==='ArrowDown'||e.key==='ArrowRight') navigate(PAGES[Math.min(idx+1,PAGES.length-1)]);
+  if(e.key==='ArrowUp'  ||e.key==='ArrowLeft' ) navigate(PAGES[Math.max(idx-1,0)]);
+});
+
+/* ── Touch / swipe ── */
+let touchY = null;
+document.addEventListener('touchstart', e=>{ touchY = e.touches[0].clientY; }, {passive:true});
+document.addEventListener('touchend', e=>{
+  if(touchY===null||menuOpen) return;
+  const dy  = touchY - e.changedTouches[0].clientY;
+  const idx = PAGES.indexOf(current);
+  if(dy >  55) navigate(PAGES[Math.min(idx+1,PAGES.length-1)]);
+  if(dy < -55) navigate(PAGES[Math.max(idx-1,0)]);
+  touchY = null;
+});
+</script>
+</body>
+</html>
