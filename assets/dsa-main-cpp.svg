@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430">
+<defs>
+ <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#090b0f"/><stop offset="1" stop-color="#171b22"/></linearGradient>
+ <radialGradient id="r"><stop stop-color="#36d399" stop-opacity=".18"/><stop offset="1" stop-color="#36d399" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="1200" height="430" rx="26" fill="url(#g)"/>
+<circle cx="1030" cy="90" r="260" fill="url(#r)"/>
+<rect x="52" y="52" width="6" height="326" rx="3" fill="#36d399"/>
+<text x="88" y="94" fill="#8993a1" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="15" letter-spacing="2">VARUN MANGWANI / PROJECT</text>
+<text x="88" y="164" fill="#f3f5f7" font-family="Segoe UI,Arial,sans-serif" font-size="42" font-weight="700">DSA MAIN — C++</text>
+<text x="90" y="207" fill="#c0c7d0" font-family="Segoe UI,Arial,sans-serif" font-size="21">Building problem-solving ability one problem at a time.</text>
+<rect x="90" y="246" width="500" height="1" fill="#303640"/>
+<text x="90" y="285" fill="#36d399" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="15" letter-spacing="1">DSA  /  C++  /  LOGIC  /  PROBLEM SOLVING</text>
+<text x="90" y="335" fill="#7f8997" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="15">learn → experiment → understand → build</text>
+
+<rect x="730" y="72" width="390" height="290" rx="20" fill="#0c0f14" stroke="#2a3039"/>
+<text x="770" y="116" fill="#737e8d" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="13">/core</text>
+<text x="790" y="185" fill="#aeb7c4" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="15">problem</text>
+<text x="790" y="213" fill="#aeb7c4" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="15">  ↓</text>
+<text x="790" y="241" fill="#aeb7c4" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="15">pattern</text>
+<text x="790" y="269" fill="#aeb7c4" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="15">  ↓</text>
+<text x="790" y="297" fill="#aeb7c4" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="15">algorithm</text>
+<text x="790" y="325" fill="#aeb7c4" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="15">  ↓</text>
+<text x="790" y="353" fill="#aeb7c4" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="15">C++ implementation</text>
+<text x="790" y="381" fill="#aeb7c4" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="15">  ↓</text>
+<text x="790" y="409" fill="#aeb7c4" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="15">test + improve</text>
+<circle cx="1080" cy="325" r="7" fill="#36d399"/>
+</svg>
