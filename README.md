@@ -1,109 +1,79 @@
+<h1 align="center">Hi 👋, I'm Varun Mangwani</h1>
+<h3 align="center">Software Developer • Building things that live on the internet</h3>
 
-<!-- TOP BANNER -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=220&section=header&text=Varun%20Mangwani&fontSize=45&fontColor=ffffff&animation=fadeIn" />
+  <img src="https://raw.githubusercontent.com/Varun-Mangwani/Varun-Mangwani/main/developer_id_card.svg" alt="Varun Mangwani — Developer ID Card" width="750"/>
 </p>
 
-<!-- TYPING ANIMATION -->
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=38BDF8&center=true&vCenter=true&width=700&lines=Key+To+Find+Peace+Is+Focus;Software+Developer;Web+Developer;API+Manager;Building+With+Consistency" />
-</p>
-
----
-
-## 🌐 My Website
-<p align="center">
-  <a href="https://varun.dpdns.org" target="_blank">
-    <img src="https://img.shields.io/badge/Visit%20My%20Website-varun.dpdns.org-0ea5e9?style=for-the-badge&logo=google-chrome&logoColor=white"/>
-  </a>
+  <a href="https://linkedin.com/in/varun-mangwani"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+  <a href="mailto:your.email@example.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" /></a>
+  <a href="https://your-portfolio-site.com"><img src="https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=vercel&logoColor=white" /></a>
+  <a href="https://twitter.com/your_handle"><img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" /></a>
 </p>
 
 ---
 
-## 🚀 About Me
-<p align="center">
-  <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="320"/>
-</p>
+### 🧑‍💻 About Me
 
-- 💻 Coding & Software Development  
-- 🌐 Web Development  
-- 🔗 API Management  
-- 🧠 Focused mindset & disciplined growth  
-- 🔥 Turning logic into impact  
+- 🔭 I'm currently working on **[project / role name]**
+- 🌱 I'm currently learning **[technology you're picking up]**
+- 👯 I'm looking to collaborate on **[type of project]**
+- 💬 Ask me about **[your strongest skills]**
+- ⚡ Fun fact: **[something personal/fun]**
 
 ---
 
-## 🛠️ Tech Stack
+### 🛠️ Tech Stack
 
-### 💻 Languages
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=c,cpp,js" />
+<p align="left">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" />
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" />
+  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" />
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
+  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" />
+  <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white" />
 </p>
 
-### 🌐 Web Technologies
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=html,css,react" />
-</p>
+> Edit the badges above to match your actual stack — swap logos/colors freely via [shields.io](https://shields.io) or [simple-icons](https://simpleicons.org/).
 
 ---
 
-## 🧩 Featured Work & Experiments
+### 📊 GitHub Stats
+
 <p align="center">
-  <img src="https://media.giphy.com/media/13HgwGsXF0aiGY/giphy.gif" width="300"/>
+  <img height="165" src="https://github-readme-stats.vercel.app/api?username=Varun-Mangwani&show_icons=true&theme=tokyonight&hide_border=true" />
+  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Varun-Mangwani&layout=compact&theme=tokyonight&hide_border=true" />
 </p>
 
 <p align="center">
-  I focus on building <b>clean, functional, and scalable</b> projects  
-  that improve my problem-solving and real-world development skills.
-</p>
-
----
-
-### 🔨 What I Build
-- 🖥️ Software & logic-based programs  
-- 🌐 Responsive web applications  
-- 🔗 API-driven systems  
-- 🧠 Learning projects with strong fundamentals  
-
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=git,github,linux" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Varun-Mangwani&theme=tokyonight&hide_border=true" />
 </p>
 
 ---
 
-## 🚧 Current Journey
-<p align="center">
-  <img src="https://media.giphy.com/media/f3iwJFOVOwuy7K6FFw/giphy.gif" width="260"/>
-</p>
+### 📌 Featured Projects
 
-- 🧱 Strengthening programming fundamentals  
-- ⚙️ Exploring full-stack development  
-- 🔐 Learning better system design & APIs  
-- 🚀 Building consistently, step by step
+| Project | Description | Tech |
+|---|---|---|
+| **[Project One](https://github.com/Varun-Mangwani/project-one)** | One-line summary of what it does and why it matters | `Stack` |
+| **[Project Two](https://github.com/Varun-Mangwani/project-two)** | One-line summary | `Stack` |
+| **[Project Three](https://github.com/Varun-Mangwani/project-three)** | One-line summary | `Stack` |
 
 ---
 
-## 💬 Quote I Live By
-<p align="center">
-  <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight" />
-</p>
+### 📈 Contribution Graph
 
-> **“Key to find peace is focus.”** — *Varun Mangwani*
+<p align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=Varun-Mangwani&theme=tokyo-night&hide_border=true" />
+</p>
 
 ---
 
-## ⚡ Current Focus
 <p align="center">
-  <img src="https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif" width="260"/>
-</p>
-
-- 🔁 Building daily  
-- 📚 Learning deeply  
-- 🧱 Strengthening fundamentals  
-
----
-
-<!-- FOOTER -->
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:2c5364,50:203a43,100:0f2027&height=120&section=footer"/>
+  <i>Thanks for stopping by — feel free to reach out or check out my pinned repos!</i>
 </p>
