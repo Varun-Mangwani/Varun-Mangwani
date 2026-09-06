@@ -139,8 +139,6 @@ A focused C++ repository for building **DSA and problem-solving consistency** fr
 
 <div align="center">
 
-<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Varun-Mangwani&layout=compact&hide_border=true" alt="Most used languages" />
-
 <br />
 
 <img src="https://streak-stats.demolab.com?user=Varun-Mangwani&hide_border=true" alt="GitHub contribution streak" />
