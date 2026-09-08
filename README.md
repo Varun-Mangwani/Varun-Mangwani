@@ -15,6 +15,7 @@
 <a href="https://www.linkedin.com/in/varun-mangwani"><img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white" /></a>
 <a href="https://www.instagram.com/str_veer"><img src="https://img.shields.io/badge/Instagram-str__veer-E4405F?style=flat-square&logo=instagram&logoColor=white" /></a>
 </p>
+<a href="https://www.hackerrank.com/profile/vpm_media_busin1"><img src="https://img.shields.io/badge/HackerRank-Profile-2EC866?style=flat-square&logo=hackerrank&logoColor=white" /></a>
 
 </div>
 
@@ -162,6 +163,7 @@ I share parts of my learning journey, experiments and development process online
 <a href="https://www.instagram.com/str_veer">
 <img src="https://img.shields.io/badge/Instagram-Follow-111111?style=for-the-badge&logo=instagram&logoColor=white" />
 </a>
+<a href="https://www.hackerrank.com/profile/vpm_media_busin1"><img src="https://img.shields.io/badge/HackerRank-Profile-2EC866?style=flat-square&logo=hackerrank&logoColor=white" /></a>
 
 </div>
 
